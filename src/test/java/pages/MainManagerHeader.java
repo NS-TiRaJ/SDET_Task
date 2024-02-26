@@ -40,17 +40,20 @@ public class MainManagerHeader {
      */
     @Step ("Открытие формы добавления нового клиента")
     public MainManagerHeader openFormToAddCustomer(){
-        waitToBeClickable(driver,formToAddCustomer);formToAddCustomer.click();
+        waitToBeClickable(driver,formToAddCustomer);
+        formToAddCustomer.click();
         return this;
     }
     @Step ("Открытие настроек аккаунта клиента")
     public MainManagerHeader openAccountSettings(){
-        waitToBeClickable(driver,accountSettings);accountSettings.click();
+        waitToBeClickable(driver,accountSettings);
+        accountSettings.click();
         return this;
     }
     @Step ("Открытие таблицы Customers")
     public MainManagerHeader openCustomersTable(){
-        waitToBeClickable(driver,customersTable);customersTable.click();
+        waitToBeClickable(driver,customersTable);
+        customersTable.click();
         return this;
     }
 }

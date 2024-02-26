@@ -41,12 +41,18 @@ public class ManagerCustomersTablePage {
      * Блок с шагами теста
      */
     @Step ("Сортировка по имени")
-    public ManagerCustomersTablePage sortByFirstName(){waitUntilVisible(driver,tableColumnFirstName);tableColumnFirstName.click();tableColumnFirstName.click();
+    public ManagerCustomersTablePage sortByFirstName(){
+        waitUntilVisible(driver,tableColumnFirstName);
+        tableColumnFirstName.click();tableColumnFirstName.click();
         return this;
     }
     @Step ("Удаление клиента длинна имени которого ближе всех к среднему арифметическому всех имен")
     public ManagerCustomersTablePage deleteCustomerByAvrgNameValue(){
-        waitToBeClickable(driver,searchBar);searchBar.click();searchBar.sendKeys(getNameByAvrg());waitToBeClickable(driver,buttonDeleteCustomer);buttonDeleteCustomer.click();searchBar.clear();
+        waitToBeClickable(driver,searchBar);
+        searchBar.click();searchBar.sendKeys(getNameByAvrg());
+        waitToBeClickable(driver,buttonDeleteCustomer);
+        buttonDeleteCustomer.click();
+        searchBar.clear();
         return this;
     }
 
@@ -57,11 +63,11 @@ public class ManagerCustomersTablePage {
         // Получение списка имент клиентов
         List<WebElement> customers = driver.findElements(By.xpath("//table//tr"));
         // Вычисление средней длины имен
-        double avrgLength = customers.stream().skip(1) //Пропуск заголовка таблицы
-                .map(user -> user.findElement(By.xpath("./td[1]")).getText().length()).mapToDouble(Integer::doubleValue).average().orElse(0);
-        String closestUserName = customers.stream().skip(1) //Пропуск заголовка таблицы
-                .min(Comparator.comparing(user -> Math.abs(user.findElement(By.xpath("./td[1]")).getText().length() - avrgLength))) //Поиск клиента
-                .map(user -> user.findElement(By.xpath("./td[1]")).getText()) //Запись имени клиента
+        double avrgLength = customers.stream().skip(1) // Пропуск заголовка таблицы
+                .map(user -> user.findElement(By.xpath("./td[1]")).getText().length()).mapToDouble(Integer::doubleValue).average().orElse(0); // Расчет среднего арифметического
+        String closestUserName = customers.stream().skip(1) // Пропуск заголовка таблицы
+                .min(Comparator.comparing(user -> Math.abs(user.findElement(By.xpath("./td[1]")).getText().length() - avrgLength))) // Поиск клиента
+                .map(user -> user.findElement(By.xpath("./td[1]")).getText()) // Запись имени клиента
                 .orElse(null);
         return closestUserName; // Возращение имени клиента в формате String
     }
