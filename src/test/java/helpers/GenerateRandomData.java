@@ -1,7 +1,6 @@
 package helpers;
 
 import com.github.javafaker.Faker;
-import org.testng.Assert;
 
 /**
  * Класс генерации случайных данных
@@ -24,6 +23,5 @@ public class GenerateRandomData {
      }
 
      public static String getRandomLastName(){return faker.name().lastName();} // Генерация значения Last Name
-
 
 }

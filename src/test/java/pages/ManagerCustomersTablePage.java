@@ -16,6 +16,7 @@ import static helpers.Waiters.waitUntilVisible;
 public class ManagerCustomersTablePage {
 
     private final WebDriver driver;
+
     /**
      * Конструктор WebDriver для работы с элементами страницы
      */
@@ -23,34 +24,38 @@ public class ManagerCustomersTablePage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
     /**
      * Блок с локаторами элементов таблицы Customers
      */
     @FindBy(xpath = "//input[@ng-model='searchCustomer']")
     private WebElement searchBar;
-    @FindBy (xpath = "//a[@ng-click=\"sortType = 'fName'; sortReverse = !sortReverse\"]")
+    @FindBy(xpath = "//a[@ng-click=\"sortType = 'fName'; sortReverse = !sortReverse\"]")
     private WebElement tableColumnFirstName;
-    @FindBy (xpath = "//a[@ng-click=\"sortType = 'lName'; sortReverse = !sortReverse\"]")
+    @FindBy(xpath = "//a[@ng-click=\"sortType = 'lName'; sortReverse = !sortReverse\"]")
     private WebElement tableColumnLastName;
-    @FindBy (xpath = "//a[@ng-click=\"sortType = 'postCd'; sortReverse = !sortReverse\"]")
+    @FindBy(xpath = "//a[@ng-click=\"sortType = 'postCd'; sortReverse = !sortReverse\"]")
     private WebElement tableColumnPostCode;
-    @FindBy (xpath = "//button[@ng-click='deleteCust(cust)']")
+    @FindBy(xpath = "//button[@ng-click='deleteCust(cust)']")
     private WebElement buttonDeleteCustomer;
 
     /**
      * Блок с шагами теста
      */
-    @Step ("Сортировка по имени")
-    public ManagerCustomersTablePage sortByFirstName(){
-        waitUntilVisible(driver,tableColumnFirstName);
-        tableColumnFirstName.click();tableColumnFirstName.click();
+    @Step("Сортировка по имени")
+    public ManagerCustomersTablePage sortByFirstName() {
+        waitUntilVisible(driver, tableColumnFirstName);
+        tableColumnFirstName.click();
+        tableColumnFirstName.click();
         return this;
     }
-    @Step ("Удаление клиента длинна имени которого ближе всех к среднему арифметическому всех имен")
-    public ManagerCustomersTablePage deleteCustomerByAvrgNameValue(){
-        waitToBeClickable(driver,searchBar);
-        searchBar.click();searchBar.sendKeys(getNameByAvrg());
-        waitToBeClickable(driver,buttonDeleteCustomer);
+
+    @Step("Удаление клиента длинна имени которого ближе всех к среднему арифметическому всех имен")
+    public ManagerCustomersTablePage deleteCustomerByAvrgNameValue() {
+        waitToBeClickable(driver, searchBar);
+        searchBar.click();
+        searchBar.sendKeys(getNameByAvrg());
+        waitToBeClickable(driver, buttonDeleteCustomer);
         buttonDeleteCustomer.click();
         searchBar.clear();
         return this;
@@ -59,7 +64,7 @@ public class ManagerCustomersTablePage {
     /**
      * Функция возвращающая имя пользователя близкого к средней длине имен
      */
-    public String getNameByAvrg(){
+    public String getNameByAvrg() {
         // Получение списка имент клиентов
         List<WebElement> customers = driver.findElements(By.xpath("//table//tr"));
         // Вычисление средней длины имен
