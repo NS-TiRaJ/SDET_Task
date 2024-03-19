@@ -24,7 +24,7 @@ jobs:
         - name: Build with Maven
           run: mvn -B package --file pom.xml
         - name: run Tests
-          run:  --file testng.xml
+          run:  mvn test
         - name: Copy history
           uses: actions/checkout@v3
           if: always()
