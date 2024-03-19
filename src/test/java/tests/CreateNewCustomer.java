@@ -10,7 +10,7 @@ import pages.ManagerAddCustomerPage;
 @Epic("Тест ID 1")
 public class CreateNewCustomer extends BaseTest {
     @Test(description = "Создание нового клиента")
-    @Feature("Создание нового клиента")
+    @Feature("Создание нового клиента банка")
     public void createNewCustomer() {
         MainManagerHeader mainManagerPage = new MainManagerHeader(driver);
         ManagerAddCustomerPage managerAddCustomerPage = new ManagerAddCustomerPage(driver);
